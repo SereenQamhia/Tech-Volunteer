@@ -6,7 +6,9 @@
                 <div class="widget">
                     <h3>Navigation</h3>
                     <ul class="list-unstyled float-left links">
+                        <li><a href="{{ route('products.index') }}">Our Projects</a></li>
                         <li><a href="about">About us</a></li>
+                        <li><a href="{{ route('contact') }}">Contact us</a></li>
                         <li><a href="{{ route('news') }}">News</a></li>
                     </ul>
                 </div> <!-- /.widget -->
@@ -48,10 +50,10 @@
 
                     <h3>Connect</h3>
                     <ul class="list-unstyled social">
-                        <li><a href="#"><span class="icon-instagram"></span></a></li>
-                        <li><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                        <li><a href="https://www.instagram.com/codematesorganization/"><span class="icon-instagram"></span></a></li>
+                        <li><a href="https://twitter.com/CodeMateOrg"><span class="icon-twitter"></span></a></li>
+                        <li><a href="https://web.facebook.com/people/CodeMates/61551414568550/?is_tour_dismissed=true&_rdc=1&_rdr"><span class="icon-facebook"></span></a></li>
+                        <li><a href="https://www.linkedin.com/in/code-mates-859a70291/"><span class="icon-linkedin"></span></a></li>
 
                     </ul>
 
@@ -67,7 +69,7 @@
                     <script>
                         document.write(new Date().getFullYear());
                     </script>. All Rights Reserved. &mdash; Designed with love by <a
-                        href="#">Tech-Volunteer</a>
+                        href="#">TechHub</a>
                     <!-- License information: https://untree.co/license/ -->
                 </p>
             </div>
@@ -83,18 +85,19 @@
 
 <!-- Preloader -->
 
+<script src="{{url('js/navbar.js') }}"></script>
 
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/tiny-slider.js"></script>
+<script src="{{url('js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{url('js/tiny-slider.js')}}"></script>
 
-<script src="js/flatpickr.min.js"></script>
-<script src="js/glightbox.min.js"></script>
+<script src="{{url('js/flatpickr.min.js')}}"></script>
+<script src="{{url('js/glightbox.min.js')}}"></script>
 
 
-<script src="js/aos.js"></script>
-<script src="{{ asset('js/navbar.js') }}"></script>
-<script src="js/counter.js"></script>
-<script src="js/custom.js"></script>
+<script src="{{url('js/aos.js')}}"></script>
+<script src="{{url('js/counter.js')}}"></script>
+<script src="{{url('js/custom.js')}}"></script>
 </body>
 
 </html>
+

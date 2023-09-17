@@ -28,4 +28,11 @@ class ContactController extends Controller
         return redirect()->back()
                          ->with(['success' => 'Thank you for contact us. we will contact you shortly.']);
     }
+    public function show()
+    {
+
+        $contacts = Contact::all(); 
+        return view('Admin_Dashboard.index', compact('contacts')); }
+
+
 }

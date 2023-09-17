@@ -10,14 +10,42 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-    <section style="text-align: center;">
+    <section >
         <!-- Ensure there's no container with constraints on width around the table -->
-        <h2 class="text-xl font-semibold mb-4">Volunteering Programs</h2>
+        <style>/* Basic button styling */
+.custom-button {
+    background-color: #59886b; /* Background color */
+    color: #ffffff; /* Text color */
+    padding: 10px 20px; /* Padding (top/bottom, left/right) */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+    font-size: 16px; /* Font size */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underlines */
+    display: inline-block; /* Make the button an inline block */
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Button hover effect */
+.custom-button:hover {
+    background-color: #739680; /* New background color on hover */
+}
+</style>
+        <form action="{{ route('viewpdf') }}/{{ Auth::user()->id }}" method="post" target="_blank" >
+          @csrf
+        
+        <br>  <div>
+        <h2 style="display: inline-block">Volunteering Programs</h2>
+      
+        <input type="submit" value="View as PDF" class="custom-button" style="margin-left: 85% ;position:relative ; bottom:55px" >
+        </div>
         <table class="table" style="width: 100%">
             <thead style="background-color: rgb(179, 236, 164) ;">
               <tr>
                 <th scope="col">Program Name</th>
                 <th scope="col">Location</th>
+                
                 <th scope="col">Experiance</th>
                 <th scope="col">CV file</th>
                 <th scope="col">Donate</th>
@@ -25,13 +53,16 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($volunteers as $item)
+            {{-- @dd($filename) --}}
+              @foreach ($volunteers as $item)
     
 <tr>
        <td scope="col">{{ $item->Languages }}</td>
                 <td scope="col">{{ $item->Address }}</td>
                 <td scope="col">{{ $item->Experience }}</td>
-                <td scope="col">{{ $item->CV }}</td>
+                <td scope="col"><a href="{{ url('uplods/' . $item->CV) }}">Show file</a></td>
+
+                {{-- <td scope="col">{{ $filename }}</td> --}}
                 <td scope="col">{{ $item->day }}</td>
             
 @endforeach
@@ -40,18 +71,12 @@
 
             </tr>
             
-             {{-- @foreach ($volunteers as $program)
-                <tr>
-                    <td>{{ $program->Languages }}</td>
-                    <td>{{ $program->Address }}</td>
-                    <td>{{ $program->Experiance }}</td>
-                    <td>{{ $program->CV }}</td>
-            
-                </tr>
-            @endforeach 
-          --}}
             </tbody>
           </table>
+
+         
+        </form>
+
     </section>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

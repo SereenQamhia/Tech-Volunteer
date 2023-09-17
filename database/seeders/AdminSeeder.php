@@ -17,21 +17,22 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->truncate();
-
+        
         // Insert new data
         DB::table('admins')->insert([
             'name' => 'Admin',
                 'last_name' => 'admin',
                 'email' => 'admin@admin.com',
                 'password' =>Hash::make('adminadmin123456') ,
+                'image' =>   'https://i.pinimg.com/564x/e4/ae/91/e4ae913770319fc3230da7b28530d82c.jpg'
 
 
             ],
-            
+
     );
 
 
-    
+
 
             // Admin::factory()->count(1)->create();
     }

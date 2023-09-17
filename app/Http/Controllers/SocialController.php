@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 use Hash;
 use Illuminate\Http\Request;
@@ -33,7 +33,7 @@ class SocialController extends Controller
     }
     // for google handele
 
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(Request $request)
     {
         try {
 
@@ -42,7 +42,8 @@ class SocialController extends Controller
 
             if ($finduser) {
                 Auth::login($finduser);
-                return redirect()->route('home');
+              
+                return redirect()->intended('home');
             } else {
                 $newUser = User::Create([
                     'name' => $user->name,
@@ -52,7 +53,10 @@ class SocialController extends Controller
                     'password'=>Hash::make($user->password) ,
                 ]);
                 Auth::login($newUser);
-                return redirect()->route('home');
+                if ($request->has('next')) {
+                    return redirect($request->input('next'));
+                }
+                return redirect()->intended('home');
 
             }
         }catch(Exception $e){
@@ -70,7 +74,8 @@ class SocialController extends Controller
 
             if ($finduser) {
                 Auth::login($finduser);
-                return redirect()->route('home');
+                return redirect()->intended('home');
+
             } else {
                 $newUser = User::Create([
                     'name' => $user->name,
@@ -79,7 +84,8 @@ class SocialController extends Controller
                     'password' => Hash::make($user->password),
                 ]);
                 Auth::login($newUser);
-                return redirect()->route('home');
+                return redirect()->intended('home');
+
 
             }
         } catch (Exception $e) {
@@ -97,7 +103,8 @@ class SocialController extends Controller
 
             if ($finduser) {
                 Auth::login($finduser);
-                return redirect()->route('home');
+                return redirect()->intended('home');
+
             } else {
                 $newUser = User::Create([
                     'name' => $user->name,
@@ -107,7 +114,8 @@ class SocialController extends Controller
                     'password' => Hash::make($user->password),
                 ]);
                 Auth::login($newUser);
-                return redirect()->route('home');
+                return redirect()->intended('home');
+
 
             }
         } catch (Exception $e) {

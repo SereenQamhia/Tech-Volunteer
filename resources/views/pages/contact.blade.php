@@ -24,19 +24,21 @@
 	@section('content')
 
 
-	<div class="hero overlay" style="background-image: url('images/about.jpg')">
+	<div class="heros overlays" style="background-image: url('images/about.jpg')">
 		<div class="container">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-6 text-center">
 					<h1 class="heading text-white mb-2" data-aos="fade-up">Contact Us</h1>
+					<p data-aos="fade-up" class=" mb-5 text-white lead text-white-40">Home / Contact Us</p>
+
 					{{-- <p data-aos="fade-up" class=" mb-5 text-white lead text-white-50">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum minima dignissimos hic mollitia eius et quam ducimus maiores eos magni.</p>
 					<p data-aos="fade-up"  data-aos-delay="100">
-						<a href="#" class="btn btn-primary me-4">Donate Now</a> 
+						<a href="#" class="btn btn-primary me-4">Donate Now</a>
 					</p>		 --}}
-					
+
 				</div>
 
-				
+
 			</div>
 		</div>
 	</div>
@@ -83,7 +85,7 @@
 							@if ($errors->has('message'))
 								<span class="text-danger">{{ $errors->first('message') }}</span>
 							@endif
-						</div>	
+						</div>
 
 						<div class="col-lg-6">
 							<input type="submit" class="btn btn-primary text-white py-3" value="Send Message">
@@ -98,7 +100,7 @@
 					<div class="row">
 						<div class="col-6 col-lg-6 mb-4">
 							<h3 class="h6 fw-bold text-secondary">Address</h3>
-							<p>Eidon. Irbid, Jordan </p>
+							<p>ضاحية الحسين. Irbid, Jordan </p>
 						</div>
 						<div class="col-6 col-lg-6 mb-4">
 							<h3 class="h6 fw-bold text-secondary">Phone</h3>
@@ -128,7 +130,7 @@
 
 					</div>
 				</div>
-				
+
 
 			</div>
 		</div>
@@ -136,7 +138,7 @@
 
 
 
-
+@endsection
 
 
 

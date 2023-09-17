@@ -11,6 +11,6 @@ class paypal extends Model
     public $timestamps =false;
     public function products()
     {
-        return $this->hasOne(products::class);
+        return $this->hasMany(products::class);
     }
 }

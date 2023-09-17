@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -19,6 +18,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        // dd(url()->previous());
+
+        return view('auth.login');
+    }
+    public function creates(): View
+    {
+        session(['page'=>true]);
         return view('auth.login');
     }
 
@@ -28,13 +34,23 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {  
         $request->authenticate();
-
         $request->session()->regenerate();
+       
+        if ($request->has('next')) {
+            return redirect($request->input('next'));
+        }
 
+  else{
         return redirect()->intended(RouteServiceProvider::HOME);
-   
+        }
+        // $previousUrl = URL::previous();
+    //    return back()->back();
+
+
 
 }
+
+
     
 
     
@@ -45,11 +61,13 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
+// $request->session()->regenerate();
 
-        $request->session()->forget('gurad.web');
+        $request->session()->forget('web');
 
         $request->session()->regenerateToken();
 
-        return redirect('home');
+        return back();
+
     }
 }

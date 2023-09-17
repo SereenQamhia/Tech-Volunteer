@@ -23,10 +23,11 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                session(['url.intended' => url()->previous()]);
                 return redirect(RouteServiceProvider::HOME);
-            }
-            if (Auth::guard($guard)->check()&&$guard=='admin') {
-                return redirect()->route('admin.dashboard');
+
+            }elseif (Auth::guard($guard)->check()&&$guard=='admin') {
+                return redirect()->route('Admin_Dashboard.Category');
             }
         }
 

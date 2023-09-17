@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('paypals', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
 
-            // $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
             
         });
     }

@@ -21,7 +21,7 @@ class LoginAdmin extends Controller
     }
     public function dashboard()
     {
-        return view('admin.Admin_Home');
+        return view('Admin_Dashboard.Admin_Home');
     }
 
     public function store(Request $request): RedirectResponse
@@ -29,7 +29,7 @@ class LoginAdmin extends Controller
 
         $check = $request->all();
         if (Auth::guard('admin')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
-            return  redirect()->route('Admin_Dashboard.Category');
+            return  redirect()->route('Admin_Dashboard.index');
         } else {
             return redirect()->back()->with('error', 'Your Credintal is invalid');
         }

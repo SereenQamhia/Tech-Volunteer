@@ -1,13 +1,70 @@
 <section class="container mt-5">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2>
             {{ __('Profile Information') }}
         </h2>
-
         <p class="mt-1 text-sm text-gray-600">
             {{ __("Update your account's profile information.") }}
         </p>
     </header>
+        
+<section style="position:relative ; left:75% ; bottom :90px">
+    <br>
+            <h2 class="text-2xl font-medium text-gray-900 " style="display: inline-block">
+                {{ __('') }}
+            </h2>
+    
+      
+        <x-primary-button style="background-color: #41835a;"
+        x-data=""
+        x-on:click.prevent="$dispatch('open-modal', 'change-password')"
+    >{{ __('Change Password') }}</x-primary-button>
+    
+    <x-modal name="change-password" :show="$errors->changePassword->isNotEmpty()" focusable>
+        <form method="post" action="{{ route('password.update') }}" style="padding: 15px">
+            @csrf
+            @method('put')
+            <p class="mt-1 text-sm text-gray-600">
+                {{ __('Ensure your account is using a long, random password to stay secure.') }}
+            </p>
+            <div>
+                <x-input-label for="current_password" :value="__('Current Password')" />
+                <x-text-input id="current_password" name="current_password" type="password" class="mt-1 block w-full"  autocomplete="current-password" />
+                <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+            </div>
+    
+            <div>
+                <x-input-label for="password" :value="__('New Password')" />
+                <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
+                <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+            </div>
+    
+            <div>
+                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-text-input id="password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
+                <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+            </div>
+    
+            <div class="flex items-center gap-4 py-3" >
+                <x-primary-button >{{ __('Save') }}</x-primary-button>
+    
+                @if (session('status') === 'password-updated')
+                    <p
+                        x-data="{ show: true }"
+                        x-show="show"
+                        x-transition
+                        x-init="setTimeout(() => show = false, 2000)"
+                        class="text-sm text-gray-600"
+                    >{{ __('Saved.') }}</p>
+                @endif
+            </div>
+        </form>
+    </x-modal>
+    </section>
+    
+    
+
+    
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
@@ -18,10 +75,10 @@
         @method('patch')
         <div class="row">
             <div class="col-md-4 col-12">
-                @if ($user->image)
-                    <img src="{{ asset('images/users/' . $user->image) }}" alt="{{ $user->name }}'s Profile Picture" class="img-fluid" style="max-width: 200px; height: auto;">
+                @if ($user->name)
+                    <img src="{{ url('images/users/' . $user->image) }}" alt="{{ $user->name }}'s Profile Picture" class="img-fluid" style="max-width: 200px; height: auto;">
                 @else
-                    <img src="{{ asset('images/users/Default_pfp.svg.png') }}" alt="Default Profile Picture" class="img-fluid" style="max-width: 200px; height: auto;">
+                    <img src="{{ url('images/users/Default_pfp.svg.png') }}" alt="Default Profile Picture" class="img-fluid" style="max-width: 200px; height: auto;">
                 @endif
 
                 <div class="form-group mt-3">
@@ -70,7 +127,7 @@
 
                 <div class="form-group mt-3">
                     <div class="d-flex justify-content-between align-items-center">
-                        <x-primary-button>{{ __('Save') }}</x-primary-button>
+                        <x-primary-button  style="  background-color: #41835a; ">{{ __('Save') }}</x-primary-button>
 
                         @if (session('status') === 'profile-updated')
                             <p
@@ -90,59 +147,4 @@
 
 <br>
 <hr style="height: 3px; background-color: green;">
-
-
-<section>
-<br>
-        <h2 class="text-lg font-medium text-gray-900 " style="display: inline-block">
-            {{ __('Update Password ->') }}
-        </h2>
-
-  
-    <x-primary-button
-    x-data=""
-    x-on:click.prevent="$dispatch('open-modal', 'change-password')"
->{{ __('Change Password') }}</x-primary-button>
-
-<x-modal name="change-password" :show="$errors->changePassword->isNotEmpty()" focusable>
-    <form method="post" action="{{ route('password.update') }}" style="padding: 15px">
-        @csrf
-        @method('put')
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
-        </p>
-        <div>
-            <x-input-label for="current_password" :value="__('Current Password')" />
-            <x-text-input id="current_password" name="current_password" type="password" class="mt-1 block w-full"  autocomplete="current-password" />
-            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
-        </div>
-
-        <div>
-            <x-input-label for="password" :value="__('New Password')" />
-            <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
-        </div>
-
-        <div>
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center gap-4 py-3" >
-            <x-primary-button >{{ __('Save') }}</x-primary-button>
-
-            @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
-            @endif
-        </div>
-    </form>
-</x-modal>
-</section>
 

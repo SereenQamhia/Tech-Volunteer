@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\products;
+
 use App\Models\Frontvolunteer;
 use App\Http\Requests\StoreFrontvolunteerRequest;
 use App\Http\Requests\UpdateFrontvolunteerRequest;
+use Illuminate\Support\Facades\Auth;
 
 class FrontvolunteerController extends Controller
 {
@@ -15,7 +18,7 @@ class FrontvolunteerController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.UIform');
     }
 
     /**
@@ -23,9 +26,12 @@ class FrontvolunteerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function show($id)
     {
-        //
+        $language = products::find($id);
+        return view('pages.frontendForm',compact('language'));
+
+
     }
 
     /**
@@ -34,23 +40,31 @@ class FrontvolunteerController extends Controller
      * @param  \App\Http\Requests\StoreFrontvolunteerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFrontvolunteerRequest $request)
-    {   
+    public function store(StoreFrontvolunteerRequest $request,$id)
+    {
         $request->validate([
             'CV' => 'required|mimes:pdf,docx',
         ]);
-        Frontvolunteer::create([
+        $users = Frontvolunteer::all();
+        if ($request->hasFile('CV')) {
+            $pdfFile = $request->file('CV');
+            $authPdfFile = time() . '.' . $pdfFile->getClientOriginalExtension();
+            $pdfFile->move(public_path('uplods'), $authPdfFile);
+            $users['CV'] = $authPdfFile;
+        }
 
-        'Address'=>$request->Address,
-        'Languages'=>$request->Languages,
-        'day'=>$request->day,
-        'Experience'=>$request->Experience,
-        'CV'=>$request->CV,
-       
-       ]);
-       return redirect('home');
-        
-       
+        Frontvolunteer::create([
+   "user_id" =>Auth::user()->id,
+            'Address' => $request->Address,
+            'Languages' => $request->Languages,
+            'day' => $request->day,
+            'Experience' => $request->Experience,
+            'CV' => $users['CV']
+
+        ]);
+        return redirect()->route('finishform');
+
+
     }
 
     /**
@@ -59,11 +73,7 @@ class FrontvolunteerController extends Controller
      * @param  \App\Models\Frontvolunteer  $frontvolunteer
      * @return \Illuminate\Http\Response
      */
-    public function show(Frontvolunteer $frontvolunteer)
-    {
-        //
-    }
-
+   
     /**
      * Show the form for editing the specified resource.
      *

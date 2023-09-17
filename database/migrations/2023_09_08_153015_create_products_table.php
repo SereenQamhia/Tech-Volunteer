@@ -20,13 +20,12 @@ return new class extends Migration
             $table->string('description3');
             $table->string('breif');
             $table->string('time');
-            $table->string('location'); 
+            $table->string('location');
             $table->string('period');
-            
-            $table->mediumText('image');
+
+            $table->mediumText('image') ->nullable();
             $table->float('total');
             $table->timestamps();
-            
         });
     }
 

@@ -1,209 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.adminMaster')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+@section('content')
 
-    <style>
-        /* Reset some default browser styles */
-        html,
-        body,
-        h1 {
-            margin: 0;
-            padding: 0;
-        }
+<div class="content">
+    <div style="margin: 0% 8%">
+        <div style="width: 100%">
+            <br><br>
+            <h1 class="mx-auto">Manage Your Users</h1>
+            <a href="user_Create"><button class="btn btn-success" type="submit" style="position:absolute; right:8%;">+ Add User</button></a>
+            <br><br>
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-
-        header {
-            background-color: #4CC790;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        main {
-            margin: 20px;
-        }
-
-        .container {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        input[type="file"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-        }
-
-        button {
-            background-color: #FF9F29;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #3c9ee5;
-            color: #fff;
-        }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary p-4">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/Admin_Home">Volunteers</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('Admin_Dashboard.Admins_Data')}}"> Admins</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('Admin_Dashboard.Category')}}">Category</a>
-              </li>
-               {{-- <li class="nav-item">
-                <a class="nav-link" href="{{route('Admin_Donations')}}">Donations</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('Admin_Volunteers')}}">Volunteers</a>
-              </li> --}}
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('Admin_Dashboard.User')}}">User</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('Admin_Dashboard.Projects')}}">Projects</a>
-              </li>
-             
-              {{-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Link
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Link</a>
-              </li> --}}
-            </ul>
-          </div>
-        </div>
-      </nav>
-    <header>
-        <h1> Manage Your User</h1>
-    </header>
-    <main>
-        <div class="container">
-            <div class="user-form">
-                <form action="Admins_User" method="POST">
-                    @csrf
-                    @method('post')
-                    <label for="userName">First Name</label>
-                    <input type="text" id="FirstName" name="name">
-                    <label for="userName">Last Name</label>
-                    <input type="text" id="LastName" name="LastName">
-                    <label for="userEmail">Email</label>
-                    <input type="text" id="userEmail" name="email">
-                    <label for="userPassword">Password</label>
-                    <input type="text" id="userPassword" name="password">
-                    <label for="userphone">Phone</label>
-                    <input type="text" id="userphone" name="phone">
-                    <label for="userImage">Image</label>
-                    <input type="file" id="userImage" name="image">
-                  
-                    <button class="btn btn-warning" type="submit">Add User</button>
-                </form>
-            </div>
-        </div>
-        <div class="container">
             <table class="table table-hover">
-                <thead style="background-color: #3c9ee5">
+                <thead style="background-color: rgba(117, 192, 157, 0.489)">
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>Phone</th>
                         <th>Image</th>
-                        <th>Action</th>
+                        <th >Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $user['id'] }}</td>
-                            <td>{{ $user['name'] }}</td>
-                            <td>{{ $user['LastName'] }}</td>
-                            <td>{{ $user['email'] }}</td>
-                            <td>{{ $user['password'] }}</td>
-                            <td>{{ $user['phone'] }}</td>
-
-                            <td>
-                                <div>
-                                    @if ($user->image)
-                                        <img src="{{ asset('images/Users/' . $user->image) }}" alt="{{ $user->name }}"
-                                            width="200" height="200">
-                                    @endif
-                                </div>
-                            </td> <td>
-                            <form action="userdelete/{{$user['id'] }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit" value="DELETE">Delete</button>
-                            </form>
-                            <form action="useredit/{{ $user['id'] }}" method="">
-                                @csrf
-                                <button class="btn btn-primary" type="submit" value="Update">Update</button>
-                            </form>
+                    <tr>
+                        <td>{{ $user['id'] }}</td>
+                        <td>{{ $user['name'] }}</td>
+                        <td>{{ $user['LastName'] }}</td>
+                        <td>{{ $user['email'] }}</td>
+                        <td>{{ $user['phone'] }}</td>
+                        <td>
+                            <div>
+                                @if ($user->image)
+                                <img src="{{ asset('images/users/' . $user->image) }}" alt="{{ $user->name }}"
+                                    width="60" height="60">
+                                @endif
+                            </div>
                         </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form action="userdelete/{{ $user['id'] }}" method="POST"
+                                        style="margin-bottom: 2px">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn  fa fa-trash text-danger fa-lg show_confirm"
+                                            type="submit" value="DELETE"></button>
+                                    </form>
+                                </div>
+                                {{-- <div class="col-md-6">
+                                    <form action="useredit/{{ $user['id'] }}" method=""
+                                        style="margin-bottom: 2px">
+                                        @csrf
+                                        <button class="btn fa-regular fa-pen-to-square text-warning fa-lg"
+                                            type="submit" value="Update"></button>
+                                    </form>
+                                </div> --}}
+                            </div>
+                        </td>
+                    </tr>
                     @endforeach
-
-                   
-
                 </tbody>
             </table>
         </div>
-    </main>
-</body>
+    </div>
+</div>
+@endsection
 
-</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var deleteButtons = document.querySelectorAll('.show_confirm');
+
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                var form = button.closest("form");
+
+                swal({
+                    title: "Are you sure you want to delete this record?",
+                    text: "If you delete this, it will be gone forever.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then(function (willDelete) {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>

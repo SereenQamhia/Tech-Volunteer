@@ -24,7 +24,7 @@
 
 @section('content')
 
-	<div class="hero overlay" style="background-image: url('../images/hero_1.jpg')">
+	<div class="heros overlays" style="background-image: url('../images/hero_1.jpg')">
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-lg-6 text-center mx-auto">
@@ -33,17 +33,17 @@
 					<h1 class="heading text-white mb-2" data-aos="fade-up">The Causes</h1>
 					<p data-aos="fade-up" class=" mb-5 text-white lead text-white-50">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum minima dignissimos hic mollitia eius et quam ducimus maiores eos magni.</p>
 					<p data-aos="fade-up"  data-aos-delay="100">
-						<a href="#" class="btn btn-primary me-4">Donate Now</a> 
-					</p>		
-					
+						<a href="#" class="btn btn-primary me-4">Donate Now</a>
+					</p>
+
 				</div>
 
-				
+
 			</div>
 		</div>
 	</div>
 
-	
+
 
 	<div class="section bg-light">
 		<div class="container">
@@ -69,7 +69,7 @@
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="causes-item bg-white">
 						<a href="#"><img src="images/img_v_2-min.jpg" alt="Image" class="img-fluid mb-4 rounded"></a>
@@ -181,8 +181,8 @@
 					</div>
 				</div>
 
-			</div>		
-		</div>		
+			</div>
+		</div>
 	</div>
 
 
@@ -207,49 +207,49 @@
 				<div class="item">
 					<a class="instagram-item">
 						<span class="icon-instagram"></span>
-						<img src="images/img_v_8-min.jpg" alt="Image" class="img-fluid">		
+						<img src="images/img_v_8-min.jpg" alt="Image" class="img-fluid">
 					</a>
 				</div>
 
 				<div class="item">
 					<a class="instagram-item">
 						<span class="icon-instagram"></span>
-						<img src="images/img_v_2-min.jpg" alt="Image" class="img-fluid">		
+						<img src="images/img_v_2-min.jpg" alt="Image" class="img-fluid">
 					</a>
 				</div>
 
 				<div class="item">
 					<a class="instagram-item">
 						<span class="icon-instagram"></span>
-						<img src="images/img_v_3-min.jpg" alt="Image" class="img-fluid">		
+						<img src="images/img_v_3-min.jpg" alt="Image" class="img-fluid">
 					</a>
 				</div>
 
 				<div class="item">
 					<a class="instagram-item">
 						<span class="icon-instagram"></span>
-						<img src="images/img_v_4-min.jpg" alt="Image" class="img-fluid">		
+						<img src="images/img_v_4-min.jpg" alt="Image" class="img-fluid">
 					</a>
 				</div>
 
 				<div class="item">
 					<a class="instagram-item">
 						<span class="icon-instagram"></span>
-						<img src="images/img_v_5-min.jpg" alt="Image" class="img-fluid">		
+						<img src="images/img_v_5-min.jpg" alt="Image" class="img-fluid">
 					</a>
 				</div>
 
 				<div class="item">
 					<a class="instagram-item">
 						<span class="icon-instagram"></span>
-						<img src="images/img_v_6-min.jpg" alt="Image" class="img-fluid">		
+						<img src="images/img_v_6-min.jpg" alt="Image" class="img-fluid">
 					</a>
 				</div>
 
 				<div class="item">
 					<a class="instagram-item">
 						<span class="icon-instagram"></span>
-						<img src="images/img_v_7-min.jpg" alt="Image" class="img-fluid">		
+						<img src="images/img_v_7-min.jpg" alt="Image" class="img-fluid">
 					</a>
 				</div>
 
@@ -259,7 +259,7 @@
 
 	</div>
 
-	
+
 
 
 

@@ -3,10 +3,10 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+        <link href="{{url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{url('https://getbootstrap.com/docs/5.3/assets/css/docs.css')}}" rel="stylesheet">
         <title></title>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js')}}"></script>
 
         <style>
 /* Reset some default browser styles */
@@ -81,6 +81,140 @@ body {
     </style>
 </head>
 <body>
+    <aside class="main-sidebar  elevation-4" style="background-color:#59886b ; color:white">
+        <!-- Brand Logo -->
+        {{-- <a href="index3.html" class="brand-link">
+        {{-- <a href="index3.html" class="brand-link">
+          <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+               style="opacity: .8">
+          <span class="brand-text font-weight-light">AdminLTE 3</span>
+        </a> --}}
+        
+    
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img src="{{ url('assets/img/WhatsApp Image 2023-07-04 at 10.15.24 PM.jpeg') }}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+              <a href="{{ url('/admin') }}" class="d-block" style="color:white">Anfal dherat</a>
+            </div>
+          </div>
+    
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" >
+              <!-- Add icons to the links using the .nav-icon class
+                   with font-awesome or any other icon font library -->
+              <li class="nav-item has-treeview menu-open" >
+                <a href="#" class="nav-link active" style="background-color:black">
+    
+                  <p>
+                    Dashboard
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ url('/dash') }}" class="nav-link active" style="background-color:black">
+    
+                      <h5 style="text-align:center">
+                      home
+                      </h5>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon" style="color:white"></i>
+                      <p style="color:white">Admins</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/user') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon" style="color:white"></i>
+                      <p style="color:white">Users</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/category') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon" style="color:white"></i>
+                      <p style="color:white">Categories</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/donatione') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon" style="color:white"></i>
+                  <p style="color:white">Donations</p>
+                </a>
+              </li>
+    
+    
+          <li class="nav-item">
+            <a href="{{ url('/donateditems') }}" class="nav-link">
+              <i class="far fa-circle nav-icon" style="color:white"></i>
+              <p style="color:white">Donated Items</p>
+            </a>
+          </li>
+    
+      <li class="nav-item">
+        <a href="{{ url('/donatedservives') }}" class="nav-link">
+          <i class="far fa-circle nav-icon" style="color:white"></i>
+          <p style="color:white">Donated Services</p>
+        </a>
+    
+    </li>
+    <li class="nav-item has-treeview menu-open">
+    
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" style="background-color:black">
+    
+              <h5 style="text-align:center">Form
+              </h5>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/donationform') }}" class="nav-link">
+              <i class="far fa-circle nav-icon" style="color:white"></i>
+              <p style="color:white">Donation Form</p>
+            </a>
+          </li>
+    
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('/donationitemform') }}" class="nav-link">
+          <i class="far fa-circle nav-icon" style="color:white"></i>
+          <p style="color:white">Donated Items Form</p>
+        </a>
+      </li>
+    
+    
+    
+    
+    <li class="nav-item">
+    <a href="{{ url('/donatedservicesform') }}" class="nav-link">
+    <i class="far fa-circle nav-icon" style="color:white"></i>
+    <p style="color:white">Donated Services form</p>
+    </a>
+    
+    </li>
+    </ul>
+    </li>
+    
+    
+    
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
     <nav class="navbar navbar-expand-lg bg-body-tertiary p-4">
         <div class="container-fluid">
           <a class="navbar-brand" href="/Admin_Home">Volunteers</a>
@@ -108,7 +242,9 @@ body {
               <li class="nav-item">
                 <a class="nav-link" href="{{route('Admin_Dashboard.Projects')}}">Projects</a>
               </li>
-             
+             <li class="nav-item">
+                <a class="nav-link" href="{{route('admin_logout')}}">logout</a>
+              </li>
               {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Link

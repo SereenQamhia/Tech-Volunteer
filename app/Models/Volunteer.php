@@ -12,6 +12,15 @@ class Volunteer extends Model
     protected $table = 'volunteers';
     
     protected $fillable = ['Address', 'Languages' , 'day' , 'Experience' , 'CV'];
+    public function setLanguagesAttribute($value)
+    {
+        $this->attributes['Languages'] = json_encode($value);
+    }
+
+    public function getLanguagesAttribute($value)
+    {
+        return $this->attributes['Languages'] = json_decode($value);
+    }
 
     public function user()
     {

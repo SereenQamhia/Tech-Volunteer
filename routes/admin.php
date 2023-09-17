@@ -1,15 +1,22 @@
 <?php
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductsController;
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginAdmin;
+use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\Admin_Auth\AdminAuthenticatedSessionController;
-use App\Http\Controllers\AdminController;
 
+
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DonorController;
+use App\Http\Controllers\FrontvolunteerController;
+use App\Http\Controllers\UvolunteerController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaypalController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\UserController;
+
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\SocialController;
 /*
 |--------------------------------------------------------------------------
 | admin Routes
@@ -22,16 +29,16 @@ use App\Http\Controllers\AdminController;
 */
 
 
-Route::get('login_admin', [LoginAdmin::class,'show'])->name('login_admin');
+// Route::get('login_admin', [LoginAdmin::class,'show'])->name('login_admin');
 
-Route::post('check', [LoginAdmin::class, 'store'])->name('check_admin');
-
-
+// Route::post('check', [LoginAdmin::class, 'store'])->name('check_admin');
 
 
-Route::prefix('Admin_Dashboard')->middleware('IsAdmin')->group(function (){
 
-Route::get('admin_logout', [App\Http\Controllers\LoginAdmin::class, 'logout_admin'])->name('admin_logout');
+
+// Route::prefix('admin')->middleware('IsAdmin')->group(function (){
+
+// Route::get('admin_logout', [App\Http\Controllers\LoginAdmin::class, 'logout_admin'])->name('admin_logout');
    
 
 
@@ -98,9 +105,10 @@ Route::get('admin_logout', [App\Http\Controllers\LoginAdmin::class, 'logout_admi
     Route::get('productedit/{id}', [ProductsController::class, 'edit'])->name('product.edit');
     Route::patch('productedit/productupdate/{id}', [ProductsController::class, 'update']);
 
-   
- require __DIR__ . '/auth.php';
-});
+//    require __DIR__ . '/auth.php';
+
+// });
+
 
 
 
