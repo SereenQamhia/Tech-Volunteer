@@ -1,5 +1,5 @@
-# Tech-Volunteer
-Welcome to Tech-Volunteer, a purpose-driven platform dedicated to empowering aspiring coders with the tools and support they need to succeed. Our mission is to foster
+# CODEMATES
+Welcome to CODEMATES, a purpose-driven platform dedicated to empowering aspiring coders with the tools and support they need to succeed. Our mission is to foster
 a collaborative ecosystem where individuals passionate about technology can make a meaningful impact through donations and volunteering.
 
 
