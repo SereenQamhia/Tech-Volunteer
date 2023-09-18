@@ -9,14 +9,7 @@
       <h1 class="mx-auto"> Accepted Volunteeres </h1>  
 
       <!-- resources/views/send-email.blade.php -->
-<form action="{{ route('email') }}" method="POST">
-    @csrf
-    <label for="subject">Subject:</label>
-    <input type="text" name="subject" required><br>
-    <label for="message">Message:</label>
-    <textarea name="message" rows="4" required></textarea><br>
-    <button type="submit">Send Email</button>
-</form>
+
 
     <br>
       <table class="table table-hover">

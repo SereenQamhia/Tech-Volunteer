@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Accept;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\TraineeController;
@@ -16,13 +17,12 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\EmailController;
 use App\Http\Controllers\SocialController;
 
 // pdf
-Route::post('profile/vpdf/{id?}',[VolunteerController::class, 'view'])->name('viewpdf');
+Route::post('profile/vpdf/{id?}', [VolunteerController::class, 'view'])->name('viewpdf');
 // Route::post('profile/dpdf',[VolunteerController::class, 'download'])->name('download');
-Route::get('table',function(){
+Route::get('table', function () {
     view('profile.partials.table');
 })->name('table');
 
@@ -42,8 +42,10 @@ Route::get('/donate', function () {
     return view('pages.donate');
 });
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\VacceptController;
+use App\Mail\ContactMail;
 use App\Models\User;
-
+use App\Models\Vaccept;
 
 Route::get('/rer', function () {
     return view('pages.cliker');
@@ -53,6 +55,7 @@ Route::get('/rer', function () {
 //     return view('pages.index');
 // });
 Route::get('single/{id?}', [CategoryController::class, 'find'])->name('single');
+Route::get('ara', [ContactMail::class, 'sendmess']);
 // Route::get('/', [CategoryController::class, 'index']);
 // Route::get('/', [CategoryController::class, 'index']);
 // Route::get('home', [CategoryController::class, 'index'])->name('home');
@@ -61,7 +64,8 @@ Route::resource('pages/', ProductsController::class);
 
 Route::resource('product', ProductsController::class);
 
-Route::get('/products', [ProductsController::class, 'product'])->name('products.index');
+Route::get('/products', [ProductsController::class, 'ourproject'])->name('products.index');
+
 
 // Route::get('/', [CategoryController::class, 'index']);
 // Route::get('/home', [CategoryController::class, 'index']);
@@ -114,7 +118,7 @@ Route::get('paypal/success/{product_id}', [PaypalController::class, 'success'])-
 Route::get('paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal_cancel'); // Use 'cancel' method for GET
 // Define the PayPal routes with the appropriate methods
 
-Route::get('single/payment/{id}', [PaypalController::class, 'showpayment'])->middleware('auth','verified'); // Use 'success' method for GET
+Route::get('single/payment/{id}', [PaypalController::class, 'showpayment'])->middleware('auth', 'verified'); // Use 'success' method for GET
 
 
 
@@ -172,19 +176,20 @@ Route::get('auth/github/callback', [SocialController::class, 'handleGithubCallba
 
 Route::get('/backform', function () {
     return view('pages.trainingForm');
-})->middleware('auth',
-    'verified'
-);
+})->middleware(
+        'auth',
+        'verified'
+    );
 
 Route::resource("volunteers", VolunteerController::class)->middleware('auth', 'verified');
 
 
-Route::get('/frontform', function () {
-    return view('pages.frontendForm');
-})->name('frontform')->middleware('auth', 'verified');
 
-Route::resource("frontvolunteers", FrontvolunteerController::class)->middleware('auth', 'verified');
+Route::post("single/frontform/form/{id}", [FrontvolunteerController::class, 'store'])->middleware('auth', 'verified');
 
+
+Route::get('single/frontform/{id}', [FrontvolunteerController::class, 'show'])->middleware('auth', 'verified')->name('frontform');
+;
 
 Route::get('/serviceform', function () {
     return view('pages.donationForm');
@@ -213,18 +218,18 @@ Route::post('check', [App\Http\Controllers\LoginAdmin::class, 'store'])->name('c
 
 //////////////////////////////// SAJEDA CODE ////////////////////////////////
 
+Route::get('accept/{id?}', [VacceptController::class, 'acceptv'])->name('accept');
 Route::prefix('admin')->middleware('IsAdmin')->group(function () {
 
     Route::get('admin_logout', [App\Http\Controllers\LoginAdmin::class, 'logout_admin'])->name('admin_logout');
 
 
-    Route::get('/email', [EmailController::class, 'store'])->name('email');
     Route::get('/Admin_Home', [ContactController::class, 'show'])->name('Admin_Dashboard.index');
 
     Route::get('/Admin_profile', [AdminController::class, 'index'])->name('Admin_Dashboard.profile');
 
-   
-  
+
+
 
     //  volunteers data
     Route::get('/Admin_Volunteers', [VolunteerController::class, 'showe'])->name('Admin_Dashboard.Volunteers');
@@ -235,7 +240,8 @@ Route::prefix('admin')->middleware('IsAdmin')->group(function () {
 
     //ressourses data
     Route::get('/Admin_ressourses', [DonorController::class, 'show'])->name('Admin_Dashboard.ressourses');
-    
+    Route::get('/Admin_Dashboard_Vaccept', [VacceptController::class, 'show'])->name('Admin_Dashboard.Vaccept');
+
 
     // Route::get('/admins/{id}/edit', [AdminController::class, 'edit'])->name('Admin_Dashboard.Admins_Update');
 
@@ -283,16 +289,20 @@ Route::prefix('admin')->middleware('IsAdmin')->group(function () {
 
 
 
-    
+
+    // email for all users
+    Route::get('/send-email', [VacceptController::class, 'showEmailForm'])->name('admin.send-email');
+    Route::post('/send-email', [VacceptController::class, 'sendEmail'])->name('admin.send-email.post');
+
 });
 
+
+
 Route::get('/traineeForm', function () {
-        return view('pages.traineeForm');
-    })->name('traineeForm')->middleware('auth', 'verified');
-    
-    Route::resource("trainees", TraineeController::class);
-    // Route::post('/traineeForm', [TraineeController::class, 'store'])->name('traineeForm');
-    
+    return view('pages.traineeForm');
+})->name('traineeForm')->middleware('auth', 'verified');
+
+Route::resource("trainees", TraineeController::class);
+// Route::post('/traineeForm', [TraineeController::class, 'store'])->name('traineeForm');
+
 require __DIR__ . '/auth.php';
-
-

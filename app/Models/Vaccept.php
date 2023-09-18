@@ -8,7 +8,10 @@ use Illuminate\Notifications\Notifiable;
 
 class Vaccept extends Model
 {
-    use HasFactory ,Notifiable;
-    protected $fillable = ['Address', 'Languages', 'day', 'Experience', 'CV', 'user_id','email'];
-    
+    use HasFactory, Notifiable;
+    protected $fillable = ['Address', 'Languages', 'day', 'Experience', 'CV', 'user_id', 'email'];
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    public $timestamps =false;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -45,15 +45,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function volunteer()
     {
         return $this->hasMany(Volunteer::class);
+    }
+    public function vaccept()
+    {
+        return $this->hasMany(Vaccept::class);
     }
     public function Uvolunteer()
     {
         return $this->hasMany(Uvolunteer::class);
     }
+    public function products()
+    {
+        return $this->belongsToMany(products::class);
+    }
 
-    
+
 }

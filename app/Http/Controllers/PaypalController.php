@@ -97,13 +97,13 @@ class PaypalController extends Controller
         $response = $provider->capturePaymentOrder($request->token);
         $amountFromResponse = $response['purchase_units'][0]['payments']['captures'][0]['amount']['value'];
 
-        if ($amountFromResponse <=$totalsproduct) {
+        
+        if (isset($response['purchase_units'][0]['payments']['captures'][0]['amount']['value'])) {
+
+            if ($amountFromResponse >$totalsproduct) {
                                 return redirect()->back()->with('error', 'The amount is more than what we need');
 
             }
-        if (isset($response['purchase_units'][0]['payments']['captures'][0]['amount']['value'])) {
-
-            
                 if (isset($response['status']) && $response['status'] == "COMPLETED") {
                     DB::table('paypals')->insert([
                         'paymen_id' => $response['id'],

@@ -10,8 +10,8 @@ class Volunteer extends Model
 {
     use HasFactory;
     protected $table = 'volunteers';
-    
-    protected $fillable = ['Address', 'Languages' , 'day' , 'Experience' , 'CV'];
+
+    protected $fillable = ['Address', 'Languages', 'day', 'Experience', 'CV'];
     public function setLanguagesAttribute($value)
     {
         $this->attributes['Languages'] = json_encode($value);
@@ -26,5 +26,6 @@ class Volunteer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 
 }

@@ -40,8 +40,8 @@
 
 
 
-      <div class="heros overlays" style="background-image: url('../images/about.jpg')">
-          <div class="container">
+<div class="heros overlays" style="background-image: url('images/about.jpg')">
+              <div class="container">
               <div class="row align-items-center justify-content-center">
                   <div class="col-lg-6 text-center">
                       <h1 class="heading text-white mb-2" data-aos="fade-up">Payment</h1>

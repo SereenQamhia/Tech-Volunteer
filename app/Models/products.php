@@ -21,13 +21,22 @@ class products extends Model
         'time',
         'image',
         'created_at',
-        
-    ];
-    public $timestamps =true;
 
-    public function pay()
+    ];
+    public $timestamps = true;
+
+    public function users()
     {
-        return $this->belongsToMany(paypal::class);
+        return $this->belongsToMany(User::class);
 
     }
+    public function volnters()
+    {
+        return $this->hasOne(Volunteer::class);
+    }
+    public function acceptvolnters()
+    {
+        return $this->hasOne(Vaccept::class);
+    }
+    // return $this->belongsToMany(paypal::class);
 }

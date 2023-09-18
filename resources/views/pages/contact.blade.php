@@ -100,7 +100,7 @@
 					<div class="row">
 						<div class="col-6 col-lg-6 mb-4">
 							<h3 class="h6 fw-bold text-secondary">Address</h3>
-							<p>ضاحية الحسين. Irbid, Jordan </p>
+							<p>Irbid, Jordan </p>
 						</div>
 						<div class="col-6 col-lg-6 mb-4">
 							<h3 class="h6 fw-bold text-secondary">Phone</h3>
